@@ -94,13 +94,18 @@ def test_numere_prime():
     assert numere_superprime([179, 239]) == [239]
 
 def lista_numere_inlocuite_cu_cmmdc(lst):
+    '''
+    returneaza lista cu proprietatea 5
+    :param lst: lista de numere intregi
+    :return: lista_finala: lista de numere intregi
+    '''
     lista_finala = []
     numere_pozitive = []
     for i in lst:
         if i > 0:
             numere_pozitive.append(i)
     cmmdc = numere_pozitive[0]
-    for i in range(1,len(lst)):
+    for i in range(1,len(numere_pozitive)):
         copie = numere_pozitive[i]
         while copie != cmmdc:
             if copie > cmmdc:
@@ -117,6 +122,10 @@ def lista_numere_inlocuite_cu_cmmdc(lst):
             string_final = string_final[::-1]
             lista_finala.append("-"+string_final)
     return lista_finala
+
+
+def test_lista_numere_inlocuite_cu_cmmdc():
+    assert lista_numere_inlocuite_cu_cmmdc([-76,12,24,-13,144]) == [-67, 12, 12, -31, 12]
 
 
 def print_Menu():
