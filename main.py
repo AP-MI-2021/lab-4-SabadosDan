@@ -27,9 +27,9 @@ def test_numere_negative():
 
 def get_last_digit(numar):
     '''
-
-    :param numar:
-    :return:
+    returneaza ultima cifra dintr-un numar
+    :param numar: intreg
+    :return: ultima cifra
     '''
     if numar < 0:
         string = str(numar)
@@ -40,10 +40,10 @@ def get_last_digit(numar):
 
 def cel_mai_mic_numar_care_se_termina_cu_o_cifra_citita(lst, cifra_citita):
     '''
-
-    :param lst:
-    :param cifra_citita:
-    :return:
+    returneaza minimul din lista care se termina cu cifra_citita
+    :param lst: lista de numere intregi
+    :param cifra_citita: cifra naturala
+    :return: minim : numar intreg
     '''
     minim = 99999
     for i in lst:
@@ -54,8 +54,14 @@ def cel_mai_mic_numar_care_se_termina_cu_o_cifra_citita(lst, cifra_citita):
 
 def test_cel_mai_mic_numar_care_se_termina_cu_o_cifra_citita():
     assert cel_mai_mic_numar_care_se_termina_cu_o_cifra_citita([521, -43,542, 23, -23, -63,512], 3) == -63
+    assert cel_mai_mic_numar_care_se_termina_cu_o_cifra_citita([1,6,34,68,40,48,20],8) == 48
 
 def is_prime(numar):
+    '''
+    Verifica daca este prim
+    :param numar: intreg
+    :return: True sau False
+    '''
     if numar < 2 :
         return False
     for i in range(2, numar//2 + 1):
@@ -66,9 +72,9 @@ def is_prime(numar):
 
 def numere_superprime(lst):
     '''
-
-    :param lst:
-    :return:
+    Returneaza lista compusa din numerele superprime din lista initiala
+    :param lst: lista initiala de numere intregi
+    :return:lista_numere_superprime : lista de numere intregi
     '''
     lista_numere_superprime = []
     for i in lst:
@@ -84,8 +90,33 @@ def numere_superprime(lst):
     return lista_numere_superprime
 
 
-def test_numere_superprime():
-    pass
+def test_numere_prime():
+    assert numere_superprime([179, 239]) == [239]
+
+def lista_numere_inlocuite_cu_cmmdc(lst):
+    lista_finala = []
+    numere_pozitive = []
+    for i in lst:
+        if i > 0:
+            numere_pozitive.append(i)
+    cmmdc = numere_pozitive[0]
+    for i in range(1,len(lst)):
+        copie = numere_pozitive[i]
+        while copie != cmmdc:
+            if copie > cmmdc:
+                copie = copie - cmmdc
+            elif copie < cmmdc:
+                cmmdc = cmmdc - copie
+    for i in lst:
+        if i > 0:
+            lista_finala.append(cmmdc)
+        else:
+            string = str(i)
+            string_fara_minus = string.split("-")
+            string_final = string_fara_minus[1]
+            string_final = string_final[::-1]
+            lista_finala.append("-"+string_final)
+    return lista_finala
 
 
 def print_Menu():
@@ -99,6 +130,9 @@ def print_Menu():
     print(" x. Iesire")
 
 def main():
+    test_numere_prime()
+    test_numere_negative()
+    test_cel_mai_mic_numar_care_se_termina_cu_o_cifra_citita()
     print_Menu()
     l = []
     while True:
